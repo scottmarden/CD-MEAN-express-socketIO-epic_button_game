@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Epic Button Game</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			$(document).ready( () => {
+				var socket = io.connect();
+
+				socket.on("begin", (data) => {
+					console.log(data.count);
+					var count = data.count;
+					$("#announcement").html("<h1>The button has been clicked " + data.count + " time(s)!</h1>")
+				})
+
+				$("button[name='count_button']").click( () => {
+					console.log("Button clicked on website!");
+					socket.emit("increase_count");
+				});
+				socket.on("count_increased", (data) => {
+					console.log(data);
+					count = data.count;
+					console.log(count);
+					$("#announcement").html("<h1>The button has been clicked " + data.count + " time(s)!</h1>")
+				})
+				$("button[name='reset_button']").click( () => {
+					console.log("Reset clicked!");
+					socket.emit("reset_count", {count: 0});
+				})
+				socket.on("count_reset", (data) => {
+					console.log("After reset, received: ", data);
+					$("#announcement").html("<h1>The button has been clicked " + data.count + " time(s)!</h1>")
+				})
+			});
+
+
+
+
+
+
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="announcement">
+				<!-- Count announcement text will go here -->
+			</div>
+			<div id="buttons">
+				<button id="counter" name="count_button">Count!</button>
+				<button id="reset" name="reset_button">Reset!</button>
+			</div>
+
+
+		</div>
+	</body>
+</html>

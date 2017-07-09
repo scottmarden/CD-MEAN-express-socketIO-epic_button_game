@@ -1,0 +1,19 @@
+#wrapper{
+	background-color: lightgrey;
+	width: auto;
+	height: 600px;
+}
+
+#counter {
+	background-color: blue;
+	color: white;
+	border-radius: 40%;
+	padding: 10px;
+	font-size: 200%;
+	display: block;
+	margin: 10px 200px;
+}
+
+#reset{
+	margin-left: 500px;
+}
