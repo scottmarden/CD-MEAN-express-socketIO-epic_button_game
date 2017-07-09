@@ -7,7 +7,7 @@
 #counter {
 	background-color: blue;
 	color: white;
-	border-radius: 40%;
+	border-radius: 20px;
 	padding: 10px;
 	font-size: 200%;
 	display: block;
@@ -15,5 +15,8 @@
 }
 
 #reset{
+	background-color: red;
+	color: white;
 	margin-left: 500px;
+	size: 120%;
 }
